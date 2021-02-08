@@ -1,0 +1,11 @@
+._wrapper{
+    display: flex;
+    margin: 10px 0;
+}
+._avatar{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+}

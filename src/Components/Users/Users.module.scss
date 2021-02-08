@@ -1,0 +1,62 @@
+._wrapper{
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+._avatar{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+._btn3{
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    transition: all 0.3s;
+
+    &::after{
+        content: '';
+        position: absolute;
+        z-index: -1;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+}
+._btn_red{
+    background: #e74c3c;
+    &:hover{
+        background: #c0392b;
+    }
+    &:active{
+        background: #c0392b;
+        top: 2px;
+    }
+}
+._btn_blue{
+    background: #3c66b9;;
+    &:hover{
+        background: #2980b9;
+    }
+    &:active{
+        background: #2980b9;
+        top: 2px;
+    }
+}
+._selected{
+    font-weight: bold;
+}
+._paginator{
+    display: flex;
+    flex-wrap: wrap;
+}
+._paginator_btn{
+    padding: 5px;
+    margin-right: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}

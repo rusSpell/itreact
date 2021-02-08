@@ -1,0 +1,26 @@
+.header {
+    background-color: #4a76a8;
+    color: #fff;
+    grid-area: h;
+    border-radius: 0 0 5px 5px;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__nav {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.header__nav_item {
+    padding: 5px 20px;
+}
+
+.header__logo {
+    height: 50px;
+}

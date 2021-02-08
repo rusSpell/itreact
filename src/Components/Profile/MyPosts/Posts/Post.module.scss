@@ -1,0 +1,56 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 1px 0 0 #d3d9de,0 0 0 1px #e7e8ec;
+    
+    img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+.likes{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    }
+
+.item {
+    color: blueviolet;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.like,.dislike{
+    background: transparent;
+    &:hover {
+    background: transparent;    
+    }
+}
+.like_svg, .dislike_svg {
+    width: 20px;
+    height: 20px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.like_svg:hover {
+    fill: teal;
+    transform: rotate(-30deg);
+}
+.dislike_svg:hover {
+    fill: brown;
+    transform: rotate(30deg);
+}
+
+.counter{
+    color: black;
+    font-size: 16px;
+}

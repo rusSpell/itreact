@@ -1,0 +1,66 @@
+body {
+    background-color: #edeef0;
+    color: #000;
+}
+
+.container {
+    padding: 0 10px;
+}
+
+.App {
+    display: grid;
+    grid-template-areas: "h h" "n c" "f f";
+    grid-template-rows: 90px 1fr 90px;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px
+}
+button {
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+    padding: 5px 5px;
+    margin: 5px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    transition: all 0.3s;
+    min-width: 120px;
+    &:hover{
+        background: #3c66b9;    
+        &:disabled{
+            background: #555e6e
+        }
+    }
+    &:active{
+        top: 2px;
+        &:disabled{
+            background: #555e6e
+        }
+    }
+    &:disabled{
+        background: #555e6e
+    }
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+.App-content {
+   grid-area: c;  
+}
+.block{
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 #d3d9de,0 0 0 1px #e7e8ec;
+}

@@ -1,0 +1,26 @@
+._wrapper{
+    display: flex;
+}
+._names_list{
+    list-style: none;
+    flex-basis: 220px;
+    margin: 0;
+    padding: 0;
+}
+._chat{
+    flex-basis: 100%;
+}
+._form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    
+}._text{
+    resize: vertical;
+    min-height: 100px;
+    margin: 5px;
+}
+._chat_wrapper{
+    max-height: 300px;
+    overflow-y: auto;
+}

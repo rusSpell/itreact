@@ -1,0 +1,13 @@
+._names_item{
+    font-size: 18px;
+}
+._names_link{
+    color: #000;
+    display: block;
+    &:hover{
+        color: tomato;
+    }
+}
+.active{
+    color: tomato;
+}
