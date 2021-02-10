@@ -16,9 +16,11 @@ function Header(props) {
           <ul className={style.header__nav}>
             <li className={style.header__nav_item}><a href="#!">Home</a></li>
             <li className={style.header__nav_item}><a href="#!">News Feed</a></li>
-            <li className={style.header__nav_item}><a href="#!">Messages</a></li>
             <li className={style.header__nav_item}>
-              {props.isAuth ? props.login : <NavLink to={'/login'} >Войти</NavLink>}
+              {props.isAuth
+                ? <>{props.login} <a href="#!" onClick={props.logout}>- Выйти</a></> 
+                : <NavLink to={'/login'} >Войти</NavLink>
+              }
             </li>
           </ul>
         </div>
