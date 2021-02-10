@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
 let initialState = {
@@ -18,25 +17,15 @@ let initialState = {
         { id: 4, message: "Как мы говорили выше, приветственное письмо задает тон ваших отношений с клиентами. Будьте собой и покажите себя в первом письме с самой лучшей стороны." },
         { id: 5, message: "Кроме того, ваш стиль — возможно, именно то, что подписчики хотят увидеть, открыв вашу первую рассылку." },
     ],
-    newMessageText: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            let stateCopy = { ...state }
-            stateCopy.newMessageText = action.text
-            return {
-                ...state,
-                newMessageText: action.text
-            }
-        }
         case SEND_MESSAGE: {
-            let text = state.newMessageText
+            let text = action.newMessageText
             return {
                 ...state,
                 messages: [...state.messages, { id: 6, message: text }],
-                newMessageText: ''
             }
         }
         default:
@@ -44,10 +33,8 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessageActionCreator = () =>
-    ({ type: SEND_MESSAGE })
+export const sendMessageActionCreator = (newMessageText) =>
+    ({ type: SEND_MESSAGE, newMessageText })
 
-export const updateNewMessageTextCreator = (text) =>
-    ({ type: UPDATE_NEW_MESSAGE_TEXT, text: text })
 
 export default dialogsReducer

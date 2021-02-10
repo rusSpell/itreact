@@ -1,34 +1,40 @@
 import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+
+import {required, maxLengthCreator} from '../../../utils/validators/validators'
 import style from './MyPosts.module.scss'
 import Post from './Posts/Post'
+import { Textarea } from '../../common/FormsControls/FormsControls'
 
-/*-----  REACT COMPONENT ----*/
+const maxLength100 = maxLengthCreator(100)
+
+function AddPostForm(props) {
+  return (
+    <form className={style._form} onSubmit={props.handleSubmit}>
+      <div>
+        <Field component={Textarea}
+          name='newPostText'
+          className={style._text}
+          placeholder='Введите сообщение' 
+          validate={[required, maxLength100]}/>
+      </div>
+      <div>
+        <button>Отправить</button>
+      </div>
+    </form>
+  )
+}
+const AddPostReduxForm = reduxForm({ form: 'myPostsAddPostForm' })(AddPostForm)
+
 function MyPosts(props) {
   let postsComponent = props.posts.map(m => (<li key={m.id}><Post {...m} /></li>))
-  let newPostElement = React.createRef()
-  let onAddPost = () => {
-    props.addPost()
-    //dispatch(addPostActionCreator())
+  let addNewPost = (values) => {
+    props.addPost(values.newPostText)
   }
-  let onPostChange = () => {
-    let text = newPostElement.current.value
-    props.postChange(text)
-    //dispatch(updateNewPostTextActionCreator(text))
-  }
-
   return (
     <div className={`${style._item}`}>
       <h3>Страница профиля со стеной</h3>
-      <form className={style._form} onSubmit={e => { e.preventDefault(); }}>
-        <textarea 
-        className={style._text} 
-        ref={newPostElement} 
-        onChange={onPostChange} 
-        value={props.newPostText} 
-        placeholder='Введите сообщение'
-        />
-        <button onClick={onAddPost}>Отправить</button>
-      </form>
+      <AddPostReduxForm onSubmit={addNewPost} />
       <ul className={`${style._item_list}`}>
         {postsComponent}
       </ul>
