@@ -15,7 +15,7 @@ function Navbar({ state }) {
   return (
     <nav className={style.nav}>
       <ul className={style.nav__list}>
-        <li className={style.nav__item}><NavLink exact to="/" className={style.nav__link} activeClassName={style.active}>Профиль</NavLink></li>
+        <li className={style.nav__item}><NavLink exact to="/profile" className={style.nav__link} activeClassName={style.active}>Профиль</NavLink></li>
         <li className={style.nav__item}><NavLink to="/dialogs" className={style.nav__link} activeClassName={style.active}>Диалоги</NavLink></li>
         <li className={style.nav__item}><NavLink to="/news" className={style.nav__link} activeClassName={style.active}>Новости</NavLink></li>
         <li className={style.nav__item}><NavLink to="/users" className={style.nav__link} activeClassName={style.active}>Пользователи</NavLink></li>

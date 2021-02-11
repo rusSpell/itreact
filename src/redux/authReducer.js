@@ -29,12 +29,13 @@ export const setAuthUserData = (userId, email, login, isAuth) =>
 
 
 export const getAuthUserData = () => (dispatch) => {
-  authAPI.me().then(response => {
-    if (response.data.resultCode === 0) {
-      let { id, email, login } = response.data.data
-      dispatch(setAuthUserData(id, email, login, true))
-    }
-  })
+  return authAPI.me()
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        let { id, email, login } = response.data.data
+        dispatch(setAuthUserData(id, email, login, true))
+      }
+    })
 }
 
 export const login = (email, password, rememberMe) => (dispatch) => {
@@ -43,7 +44,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
       dispatch(getAuthUserData())
     } else {
       let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Что-то пошло не так'
-      dispatch(stopSubmit('login', {_error: {message}}))
+      dispatch(stopSubmit('login', { _error: { message } }))
     }
   })
 }
