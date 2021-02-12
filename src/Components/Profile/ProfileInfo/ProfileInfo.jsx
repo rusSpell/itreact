@@ -1,6 +1,7 @@
 import React from 'react'
 
-import ProfileStatus from './ProfileStatus'
+/* import ProfileStatus from './ProfileStatus' */
+import ProfileStatusWithHooks from './ProfileStatusWithHooks'
 
 import style from './ProfileInfo.module.scss'
 import avatar from './avatar.jpg'
@@ -15,7 +16,7 @@ function ProfileInfo(props) {
             <img className={style._avatar} src={props.profile.photos.large || props.profile.photos.small ? props.profile.photos.large || props.profile.photos.small : avatar} alt="avatar" />
             <div className={style._about}>
                 <p>Имя: {props.profile.fullName}</p>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 <p>Обо мне: {props.profile.aboutMe}</p>
                 <p>Дата регистрации: 01.01.1970</p>
             </div>
