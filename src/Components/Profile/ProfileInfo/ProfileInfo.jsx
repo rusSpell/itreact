@@ -6,18 +6,18 @@ import ProfileStatusWithHooks from './ProfileStatusWithHooks'
 import style from './ProfileInfo.module.scss'
 import avatar from './avatar.jpg'
 import Preloader from '../../common/Preloader/Preloader'
-function ProfileInfo(props) {
-    if (!props.profile) {
+function ProfileInfo({ profile, status, updateStatus }) {
+    if (!profile) {
         return <Preloader />
     }
 
     return (
         <div className={style._wrapper}>
-            <img className={style._avatar} src={props.profile.photos.large || props.profile.photos.small ? props.profile.photos.large || props.profile.photos.small : avatar} alt="avatar" />
+            <img className={style._avatar} src={profile.photos.large || profile.photos.small ? profile.photos.large || profile.photos.small : avatar} alt="avatar" />
             <div className={style._about}>
-                <p>Имя: {props.profile.fullName}</p>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                <p>Обо мне: {props.profile.aboutMe}</p>
+                <p>Имя: {profile.fullName}</p>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+                <p>Обо мне: {profile.aboutMe}</p>
                 <p>Дата регистрации: 01.01.1970</p>
             </div>
         </div>

@@ -8,9 +8,9 @@ import { required } from '../../utils/validators/validators'
 import { login } from '../../redux/authReducer'
 import style from './Login.module.scss'
 
-function LoginForm(props) {
+function LoginForm({handleSubmit, error}) {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field component={Input}
           name={'email'}
@@ -33,8 +33,8 @@ function LoginForm(props) {
         />
         Запомнить меня
       </div>
-      {props.error && <div className={style._form_summary_error}>
-        {props.error}
+      {error && <div className={style._form_summary_error}>
+        {error}
       </div>}
       <div>
         <button>Войти</button>

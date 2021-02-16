@@ -9,12 +9,12 @@ import store from './redux/redux-store.js'
 import { Provider } from 'react-redux';
 
 //state={state} dispatch={store.dispatch.bind(store)} store={store}
-let state = store.getState()
+let sideBar = store.getState().sideBar
     ReactDOM.render(
         <React.StrictMode>
             <Router>
                 <Provider store={store}>
-                    <App state={state} />
+                    <App sideBar={sideBar} />
                 </Provider>
             </Router>
         </React.StrictMode>,

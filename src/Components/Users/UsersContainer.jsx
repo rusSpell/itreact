@@ -10,16 +10,14 @@ import {
   getCurrentPage, getIsFetching, getFollowingInProgress
 } from '../../redux/usersSelectors'
 class UsersContainer extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+    const { currentPage, pageSize } = this.props
+    this.props.requestUsers(currentPage, pageSize)
   }
 
   onPageClick = (pageNumber) => {
-    this.props.requestUsers(pageNumber, this.props.pageSize)
-    /* this.props.setCurrentPage(pageNumber) */
+    const { pageSize } = this.props
+    this.props.requestUsers(pageNumber, pageSize)
   }
   render() {
     return (<>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -32,7 +32,7 @@ class App extends React.Component {
       <div className="App" >
         <Icons />
         <HeaderContainer />
-        <Navbar state={this.props.state.sideBar} />
+        <Navbar state={this.props.sideBar} />
 
         <div className="App-content" >
           <Route exact path='/'
