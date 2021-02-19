@@ -1,9 +1,10 @@
 import React from 'react'
-import preloader from './loading.svg'
+import style from './Preloader.module.scss'
 function Preloader() {
+    console.log(style);
     return (
-        <div>
-            <img src={preloader}/>
+        <div className={`${style.ldsRing}`}>
+            <div></div><div></div><div></div><div></div>
         </div>
     )
 }
