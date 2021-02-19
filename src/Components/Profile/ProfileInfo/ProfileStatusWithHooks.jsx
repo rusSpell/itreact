@@ -26,7 +26,7 @@ const ProfileStatusWithHooks = (props) => {
     <div>
       {!editMode &&
         <div>
-          <span onDoubleClick={activateEditMode}>Статус ы: {props.status}</span>
+          Статус: <span onDoubleClick={activateEditMode}>{!props.status ? 'изменить' : props.status}</span>
         </div>
       }
       {editMode &&
@@ -39,13 +39,13 @@ const ProfileStatusWithHooks = (props) => {
           </input>
         </div>
       }
-      
+
       <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>
+          Click me
       </button>
-    </div>
+      </div>
 
     </div>
   )

@@ -7,7 +7,7 @@ function Users({ users, currentPage, totalUsersCount,
   return (
     <div>
       <Paginator currentPage={currentPage} onPageClick={onPageClick}
-        totalUsersCount={totalUsersCount} pageSize={pageSize} />
+        totalItemsCount={totalUsersCount} pageSize={pageSize} />
       <h4>Список всех пользователей (всего: {totalUsersCount})</h4>
       {
         users.map(u => <User user={u} followingInProgress={followingInProgress}
