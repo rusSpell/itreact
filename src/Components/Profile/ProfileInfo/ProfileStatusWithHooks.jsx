@@ -18,16 +18,18 @@ const ProfileStatusWithHooks = (props) => {
   useEffect(() => {
     setStatus(props.status)
   }, [props.status])
-
-
-  const [count, setCount] = useState(0);
-
+  
   return (
     <div>
-      {!editMode &&
-        <div>
-          Статус: <span onDoubleClick={activateEditMode}>{!props.status ? 'изменить' : props.status}</span>
-        </div>
+      {
+        props.isOwner ?
+          !editMode &&
+          <div>
+            Статус: <span onDoubleClick={activateEditMode}>{!props.status ? 'изменить' : props.status}</span>
+          </div> :
+          <div>
+            Статус: <span >{!props.status ? 'пусто' : props.status}</span>
+          </div>
       }
       {editMode &&
         <div>
@@ -39,14 +41,6 @@ const ProfileStatusWithHooks = (props) => {
           </input>
         </div>
       }
-
-      <div>
-        <p>You clicked {count} times</p>
-        <button onClick={() => setCount(count + 1)}>
-          Click me
-      </button>
-      </div>
-
     </div>
   )
 

@@ -4,6 +4,8 @@ const ADD_POST = 'ADD_POST'
 const DELETE_POST = 'DELETE_POST'
 const SET_USERS_PROFILE = 'SET_USERS_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const SAVE_PHOTO_SUCCSESS = 'SAVE_PHOTO_SUCCSESS'
+const PHOTO_IS_FETCHING = 'PHOTO_IS_FETCHING'
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -18,7 +20,8 @@ let initialState = {
     { id: 5, message: 'Привет, как твои дела?', likeCount: getRandomInt(50), dislikeCount: getRandomInt(10) },
   ],
   profile: null,
-  status: ''
+  status: '',
+  isFetching: false
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -55,6 +58,12 @@ const profileReducer = (state = initialState, action) => {
         status: action.status
       }
     }
+    case SAVE_PHOTO_SUCCSESS: {
+      return { ...state, profile: {...state.profile, photos: action.photos} }
+    }
+    case PHOTO_IS_FETCHING: {
+      return { ...state, isFetching: action.isFetching }
+    }
     default:
       return state
   }
@@ -72,10 +81,18 @@ export const setUserProfile = (profile) =>
 export const setStatus = (status) =>
   ({ type: SET_STATUS, status })
 
+export const savePhotoSuccsess = (photos) =>
+  ({ type: SAVE_PHOTO_SUCCSESS, photos })
+  
+export const toggleIsFetching = (isFetching) =>
+  ({ type: PHOTO_IS_FETCHING, isFetching })
+
 /* THUNKS */
 export const getUserProfile = (userId) => async (dispatch) => {
+  dispatch(toggleIsFetching(true))
   let response = await usersAPI.getUserProfile(userId)
   dispatch(setUserProfile(response.data))
+  dispatch(toggleIsFetching(false))
 }
 export const getStatus = (userId) => async (dispatch) => {
   let response = await profileAPI.getStatus(userId)
@@ -86,6 +103,15 @@ export const updateStatus = (status) => async (dispatch) => {
   if (!response.data.resultCode) {
     dispatch(setStatus(status))
   }
+}
+export const savePhoto = (file) => async (dispatch) => {
+  dispatch(toggleIsFetching(true))
+  let response = await profileAPI.savePhoto(file)
+  if (!response.data.resultCode) {
+    dispatch(savePhotoSuccsess(response.data.data.photos))    
+    dispatch(toggleIsFetching(false))
+  }
+  
 }
 
 export default profileReducer
