@@ -1,4 +1,5 @@
-import { usersAPI, profileAPI } from '../api/api'
+import { profileAPI } from '../api/api'
+import { stopSubmit } from 'redux-form'
 
 const ADD_POST = 'ADD_POST'
 const DELETE_POST = 'DELETE_POST'
@@ -59,7 +60,7 @@ const profileReducer = (state = initialState, action) => {
       }
     }
     case SAVE_PHOTO_SUCCSESS: {
-      return { ...state, profile: {...state.profile, photos: action.photos} }
+      return { ...state, profile: { ...state.profile, photos: action.photos } }
     }
     case PHOTO_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching }
@@ -83,14 +84,14 @@ export const setStatus = (status) =>
 
 export const savePhotoSuccsess = (photos) =>
   ({ type: SAVE_PHOTO_SUCCSESS, photos })
-  
+
 export const toggleIsFetching = (isFetching) =>
   ({ type: PHOTO_IS_FETCHING, isFetching })
 
 /* THUNKS */
 export const getUserProfile = (userId) => async (dispatch) => {
   dispatch(toggleIsFetching(true))
-  let response = await usersAPI.getUserProfile(userId)
+  let response = await profileAPI.getProfile(userId)
   dispatch(setUserProfile(response.data))
   dispatch(toggleIsFetching(false))
 }
@@ -108,10 +109,19 @@ export const savePhoto = (file) => async (dispatch) => {
   dispatch(toggleIsFetching(true))
   let response = await profileAPI.savePhoto(file)
   if (!response.data.resultCode) {
-    dispatch(savePhotoSuccsess(response.data.data.photos))    
+    dispatch(savePhotoSuccsess(response.data.data.photos))
     dispatch(toggleIsFetching(false))
   }
-  
+}
+export const saveProfile = (profile) => async (dispatch, getState) => {
+  const userId = getState().auth.userId
+  const response = await profileAPI.saveProfile(profile)
+  if (!response.data.resultCode) {
+    dispatch(getUserProfile(userId))
+  } else {
+    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Что-то пошло не так'
+    dispatch(stopSubmit('EditProfile', { _error: { message } }))
+  }
 }
 
 export default profileReducer

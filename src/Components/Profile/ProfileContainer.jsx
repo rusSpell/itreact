@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Profile from './Profile'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { getUserProfile, getStatus, updateStatus, savePhoto } from '../../redux/profileReducer'
+import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from '../../redux/profileReducer'
 
 class ProfileContainer extends Component {
   refreshProfile() {
@@ -34,6 +34,7 @@ class ProfileContainer extends Component {
         status={this.props.status}
         updateStatus={this.props.updateStatus}
         savePhoto={this.props.savePhoto}
+        saveProfile={this.props.saveProfile}
         isFetching={this.props.isFetching}
       />
     )
@@ -49,7 +50,7 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
+  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile }),
   withRouter,
   /* withAuthRedirect, */
 )(ProfileContainer)

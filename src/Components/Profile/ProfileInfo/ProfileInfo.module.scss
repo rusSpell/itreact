@@ -9,3 +9,10 @@
     object-fit: cover;
     margin-right: 20px;
 }
+._form_summary_error {
+    border: 1px solid rgb(216, 47, 47);
+    padding: 5px;
+    color: rgb(216, 47, 47);
+    display: inline-block;
+    margin-top: 10px;
+}
