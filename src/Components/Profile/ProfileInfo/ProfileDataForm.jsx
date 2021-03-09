@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import { Input, Textarea } from '../../common/FormsControls/FormsControls'
 import { required, maxLengthCreator } from '../../../utils/validators/validators'
 
@@ -9,7 +9,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
   const maxLength100 = maxLengthCreator(100)
   const maxLength500 = maxLengthCreator(500)
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <p>Имя: </p>
       <Field component={Input}
         name={'fullName'}
@@ -47,11 +47,13 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           )
         })
       }
-      <button> Сохранить </button>
       {error && <div className={style._form_summary_error}>
-            {error}
-        </div>}
-    </Form>
+        {error}
+      </div>}
+      <div>
+        <button>Сохранить</button>
+      </div>
+    </form>
   )
 }
 

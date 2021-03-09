@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 /* import ProfileStatus from './ProfileStatus' */
 import ProfileStatusWithHooks from './ProfileStatusWithHooks'
-import ProfileDataForm from './ProfileDataForm'
+import ProfileDataReduxForm from './ProfileDataForm'
 
 import style from './ProfileInfo.module.scss'
 import avatar from './avatar.jpg'
@@ -30,7 +30,6 @@ function ProfileInfo({ profile, status, updateStatus, isOwner, savePhoto, isFetc
     saveProfile(formData)
     // deactivateEditMode() 
   }
-  debugger
   return (
     <div className={style._wrapper}>
       <div>
@@ -45,7 +44,7 @@ function ProfileInfo({ profile, status, updateStatus, isOwner, savePhoto, isFetc
           isFetching ? <Preloader /> :
             <ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner} /> &&
               editMode ?
-              <ProfileDataForm
+              <ProfileDataReduxForm
                 initialValues={profile}
                 profile={profile}
                 onSubmit={onSubmit}

@@ -37,12 +37,15 @@ export const getAuthUserData = () => async (dispatch) => {
 }
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
+
+
   let response = await authAPI.login(email, password, rememberMe)
   if (response.data.resultCode === 0) {
     dispatch(getAuthUserData())
   } else {
     let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Что-то пошло не так'
-    dispatch(stopSubmit('login', { _error: { message } }))
+    const action = stopSubmit('login', {_error: message})
+    dispatch(action)
   }
 
 }

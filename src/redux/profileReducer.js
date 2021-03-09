@@ -120,7 +120,7 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     dispatch(getUserProfile(userId))
   } else {
     let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Что-то пошло не так'
-    dispatch(stopSubmit('EditProfile', { _error: { message } }))
+    dispatch(stopSubmit('EditProfile', {_error: message}))
   }
 }
 
